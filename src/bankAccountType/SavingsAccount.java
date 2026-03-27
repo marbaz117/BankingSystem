@@ -7,7 +7,6 @@ import exception.InvalidBalanceException;
 
 public class SavingsAccount extends BankAccount {
     public static final double MIN_BALANCE=5000;
-    public static final double INTEREST_RATE=0.04;
     public static final double MaximumWithDrawalPerWeek=20000;
     public static final double withDrawalLimitPerMonth=10;
 
@@ -19,6 +18,7 @@ public class SavingsAccount extends BankAccount {
     public double calculateInterest(){
         return balance*INTEREST_RATE;
     }
+
 
     @Override
     public void validateMinimumBalance() throws InvalidBalanceException {

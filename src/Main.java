@@ -27,14 +27,27 @@ void main() {
     catch(InvalidBalanceException e){
         System.out.println(e.getMessage());
     }
+    CurrentAccount.INTEREST_RATE=0.05;
+    SavingsAccount.INTEREST_RATE=0.01;
+    PremiumAccount.INTEREST_RATE=0.10;
     System.out.println("----------Interest Calculation------------");
     for(BankAccount bankAccount:bankAccounts){
         try{
             bankAccount.applyInterest();
+            bankAccount.depositMoney(1000);
+
         }
         catch(InvalidAccountStatusException e){
             System.out.println(e.getMessage());
         }
     }
+    for(BankAccount bankAccount:bankAccounts){
+        try{
+            bankAccount.withDrawMoney(200);
+        } catch (InvalidBalanceException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

@@ -11,7 +11,7 @@ public abstract class BankAccount{
     protected boolean isActive;
     protected Date openDate;
     protected Customer customer;
-
+    public static double INTEREST_RATE;
     public BankAccount(String accountNumber, double balance, Customer customer) throws InvalidBalanceException{
         this.accountNumber = accountNumber;
         this.balance = balance;
@@ -19,6 +19,27 @@ public abstract class BankAccount{
         this.openDate = new Date();
         this.customer = customer;
         validateMinimumBalance();
+    }
+
+    public void depositMoney(double money){
+        this.balance+=money;
+        System.out.println("Account: " + accountNumber +
+                " | Balance: " + balance);
+    }
+
+    public static void setInterestRate(double interestRate){
+        INTEREST_RATE=interestRate;
+    }
+
+    public void withDrawMoney(double money) throws InvalidBalanceException{
+        try{
+            balance-=money;
+            validateMinimumBalance();
+        }
+        catch(InvalidBalanceException e){
+            balance+=money;
+            throw new InvalidBalanceException("Can't WithDraw Low Balance");
+        }
     }
 
     public abstract double calculateInterest();

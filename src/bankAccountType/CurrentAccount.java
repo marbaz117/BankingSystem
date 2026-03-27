@@ -5,7 +5,6 @@ import customer.Customer;
 import exception.InvalidBalanceException;
 
 public class CurrentAccount extends BankAccount {
-    private static final double INTEREST_RATE=0.09;
     private double overDraftLimit;
     public CurrentAccount(String accNo, double balance, Customer customer,double overDraftLimit) throws InvalidBalanceException{
         super(accNo,balance,customer);
@@ -18,7 +17,7 @@ public class CurrentAccount extends BankAccount {
 
 
     public void validateMinimumBalance() throws InvalidBalanceException {
-        if(balance<0)
+        if(balance<-overDraftLimit)
             throw new InvalidBalanceException("Not Having Minimum Balance!!");
     }
 }
